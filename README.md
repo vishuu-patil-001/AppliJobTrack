@@ -1,149 +1,172 @@
-# JobTrack — Job Application Tracker Portal
+# AppliJobTrack — Job Application Tracker Portal
 
-> A full-stack MERN application to track job applications, interview stages, and get analytics on your job hunt.
+> A full-stack MERN application for tracking job applications, interview stages, offers, and job-search analytics.
 
 ![Tech Stack](https://img.shields.io/badge/Stack-MERN-61DAFB?style=flat-square)
 ![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)
 ![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js)
-![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=flat-square&logo=mongodb)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb)
 ![JWT](https://img.shields.io/badge/Auth-JWT-000000?style=flat-square&logo=json-web-tokens)
 
 ---
 
 ## Problem Statement
 
-Students and professionals apply to dozens of jobs across LinkedIn, Indeed, Naukri, and company portals. Without a central tracker:
+Students and professionals often apply to multiple jobs through LinkedIn, Indeed, Naukri, company career portals, referrals, and other sources.
 
-- Applications get forgotten
-- Interview dates are missed
-- Offer deadlines pass unnoticed
-- There's no way to measure what's working
+Without a centralized system:
 
-**JobTrack** solves this with a structured, beautiful, and data-driven portal.
+- Applications can be forgotten
+- Interview dates can be missed
+- Application stages become difficult to track
+- Offer deadlines can be overlooked
+- It becomes difficult to understand job-search progress
+
+**AppliJobTrack** provides a centralized dashboard for managing job applications and monitoring the complete application pipeline.
 
 ---
 
 ## Features
 
-| Feature          | Description                                         |
-| ---------------- | --------------------------------------------------- |
-| Auth             | JWT-based register/login with bcrypt                |
-| Add Applications | Company, role, location, salary, source, URL        |
-| Stage Tracking   | Saved → Applied → OA → Interview → Offer → Accepted |
-| Priority Flag    | Mark important applications                         |
-| Search & Filter  | Filter by stage, source; search by company/role     |
-| Dashboard        | Stats cards, recent applications, source breakdown  |
-| Kanban Board     | Visual pipeline with one-click stage moves          |
-| Reports          | Bar charts, pie charts, weekly trends (recharts)    |
-| Responsive       | Works on mobile and desktop                         |
+| Feature | Description |
+|---|---|
+| Authentication | JWT-based registration and login with bcrypt password hashing |
+| Add Applications | Store company, role, location, salary, source, URL, and application details |
+| Stage Tracking | Track applications through Saved -> Applied -> OA -> Interview -> Offer -> Accepted |
+| Priority Flag | Mark important applications |
+| Search & Filter | Search by company or role and filter applications by stage or source |
+| Dashboard | View application statistics, recent applications, and source breakdown |
+| Kanban Board | Visualize the application pipeline and move applications between stages |
+| Reports & Analytics | View application trends and analytics using charts |
+| Responsive UI | Designed for desktop and mobile screen sizes |
 
 ---
 
 ## Tech Stack
 
-**Frontend**
+### Frontend
 
-- React.js 18 (CRA)
+- React.js 18
 - React Router v6
-- Axios (API calls with JWT interceptors)
-- Recharts (analytics charts)
-- React Hot Toast (notifications)
-- Custom CSS (dark editorial theme, no framework dependency)
+- Axios
+- Recharts
+- React Hot Toast
+- Custom CSS
 
-**Backend**
+### Backend
 
-- Node.js + Express.js
-- Mongoose (MongoDB ODM)
-- bcryptjs (password hashing)
-- jsonwebtoken (JWT auth)
-- Morgan (request logging)
+- Node.js
+- Express.js
+- Mongoose
+- bcryptjs
+- JSON Web Token (JWT)
+- Express Validator
+- Morgan
+- CORS
+- dotenv
 
-**Database**
+### Database
 
-- MongoDB (local or Atlas)
+- MongoDB
+- MongoDB Atlas or local MongoDB
 
 ---
 
-## Folder Structure
+## Project Structure
 
-```
-Job-Application-Tracker-Portal/
-│
-├── client/                      # React frontend
-│   ├── public/
-│   │   └── index.html
-│   ├── src/
-│   │   ├── components/          # Reusable components
-│   │   │   ├── Layout.js        # App shell + sidebar
-│   │   │   └── ApplicationModal.js # Add/Edit modal
-│   │   ├── context/
-│   │   │   └── AuthContext.js   # Global auth state
-│   │   ├── pages/
-│   │   │   ├── LoginPage.js
-│   │   │   ├── RegisterPage.js
-│   │   │   ├── DashboardPage.js
-│   │   │   ├── ApplicationsPage.js
-│   │   │   ├── KanbanPage.js
-│   │   │   └── ReportsPage.js
-│   │   ├── utils/
-│   │   │   └── api.js           # Axios instance
-│   │   ├── App.js               # Root + routes
-│   │   └── index.css            # Global styles
-│   └── package.json
-│
-├── server/                      # Express backend
-│   ├── config/
-│   │   └── db.js                # MongoDB connection
-│   ├── controllers/
-│   │   ├── authController.js    # Register, login, getMe
-│   │   ├── applicationController.js  # Full CRUD
-│   │   └── dashboardController.js    # Analytics
-│   ├── middleware/
-│   │   └── authMiddleware.js    # JWT protect middleware
-│   ├── models/
-│   │   ├── User.js              # User schema
-│   │   └── JobApplication.js   # Application schema
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── applicationRoutes.js
-│   │   └── dashboardRoutes.js
-│   ├── .env.example
-│   ├── index.js                 # Server entry point
-│   └── package.json
-│
-├── docs/                        # Screenshots, diagrams
-├── .gitignore
-└── README.md
+```text
+AppliJobTrack/
+|
++-- client/                         # React frontend
+|   +-- public/
+|   |   +-- index.html
+|   |
+|   +-- src/
+|       +-- components/             # Reusable UI components
+|       +-- context/                # Global authentication state
+|       +-- pages/                  # Application pages
+|       +-- services/               # Frontend service/API logic
+|       +-- utils/                  # Utility functions
+|       +-- App.js                  # Application routes
+|       +-- index.js                # React entry point
+|   |
+|   +-- package.json
+|
++-- server/                         # Express backend
+|   +-- config/
+|   |   +-- db.js                   # MongoDB connection
+|   |
+|   +-- controllers/
+|   |   +-- authController.js
+|   |   +-- applicationController.js
+|   |   +-- dashboardController.js
+|   |
+|   +-- middleware/
+|   |   +-- authMiddleware.js
+|   |
+|   +-- models/
+|   |   +-- User.js
+|   |   +-- JobApplication.js
+|   |
+|   +-- routes/
+|   |   +-- authRoutes.js
+|   |   +-- applicationRoutes.js
+|   |   +-- dashboardRoutes.js
+|   |
+|   +-- .env.example
+|   +-- index.js                    # Express server entry point
+|   +-- package.json
+|
++-- docs/                           # Project documentation/screenshots
++-- .gitignore
++-- README.md
 ```
 
 ---
 
 ## API Endpoints
 
-### Auth
+### Authentication
 
-| Method | Endpoint             | Description                  |
-| ------ | -------------------- | ---------------------------- |
-| POST   | `/api/auth/register` | Create new user              |
-| POST   | `/api/auth/login`    | Login + get JWT              |
-| GET    | `/api/auth/me`       | Get current user (protected) |
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/auth/register` | Register a new user |
+| POST | `/api/auth/login` | Login and receive JWT |
+| GET | `/api/auth/me` | Get the currently authenticated user |
 
-### Applications (all protected)
+### Applications
 
-| Method | Endpoint                      | Description             |
-| ------ | ----------------------------- | ----------------------- |
-| GET    | `/api/applications`           | List all (with filters) |
-| POST   | `/api/applications`           | Create new application  |
-| GET    | `/api/applications/:id`       | Get single application  |
-| PUT    | `/api/applications/:id`       | Full update             |
-| DELETE | `/api/applications/:id`       | Delete                  |
-| PATCH  | `/api/applications/:id/stage` | Update stage only       |
+All application endpoints require authentication.
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/applications` | Get applications with filters |
+| POST | `/api/applications` | Create a new application |
+| GET | `/api/applications/:id` | Get a single application |
+| PUT | `/api/applications/:id` | Update an application |
+| DELETE | `/api/applications/:id` | Delete an application |
+| PATCH | `/api/applications/:id/stage` | Update application stage |
 
 ### Dashboard
 
-| Method | Endpoint                 | Description    |
-| ------ | ------------------------ | -------------- |
-| GET    | `/api/dashboard/summary` | Analytics data |
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/dashboard/summary` | Get dashboard analytics |
+
+### Health Check
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/` | Check whether the backend API is running |
+
+Example response:
+
+```json
+{
+  "success": true,
+  "message": "AppliJobTrack API is running"
+}
+```
 
 ---
 
@@ -151,37 +174,38 @@ Job-Application-Tracker-Portal/
 
 ### Prerequisites
 
-- Node.js 18+
-- MongoDB (local) or MongoDB Atlas account
+Make sure the following are installed:
+
+- Node.js 18 or higher
+- npm
+- MongoDB local server or MongoDB Atlas
+- Git
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Job-Application-Tracker-Portal.git
-cd Job-Application-Tracker-Portal
+git clone https://github.com/vishuu-patil-001/AppliJobTrack.git
+cd AppliJobTrack
 ```
 
-### 2. Backend setup
+### 2. Install backend dependencies
 
 ```bash
 cd server
 npm install
-cp .env.example .env
-# Edit .env with your MongoDB URI and a secret JWT key
-npm run dev
 ```
 
-### 3. Frontend setup
+### 3. Configure environment variables
 
-```bash
-cd client
-npm install
-npm start
+Create:
+
+```text
+server/.env
 ```
 
-### 4. Environment variables (`server/.env`)
+Use the following structure:
 
-```
+```env
 PORT=5000
 MONGO_URI=mongodb://localhost:27017/job_tracker
 JWT_SECRET=your_super_secret_key_here
@@ -189,82 +213,235 @@ JWT_EXPIRES_IN=7d
 NODE_ENV=development
 ```
 
-### 5. Access the app
+> Never commit your actual `.env` file or private credentials to GitHub.
 
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:5000
+### 4. Start the backend
+
+From the `server` directory:
+
+```bash
+npm start
+```
+
+For development with nodemon:
+
+```bash
+npm run dev
+```
+
+Backend:
+
+```text
+http://localhost:5000
+```
+
+### 5. Install frontend dependencies
+
+Open another PowerShell terminal:
+
+```powershell
+cd "C:\Users\vishw\Downloads\Projects\job-application-tracker-portal-main\client"
+npm install
+```
+
+### 6. Start the frontend
+
+```powershell
+npm start
+```
+
+Frontend:
+
+```text
+http://localhost:3000
+```
 
 ---
 
-## 📸 Screenshots to Capture
+## Running the Project
+
+You need two terminals during local development.
+
+### Terminal 1 — Backend
+
+```powershell
+cd "C:\Users\vishw\Downloads\Projects\job-application-tracker-portal-main\server"
+npm start
+```
+
+Expected output:
+
+```text
+Server running on port 5000
+MongoDB connected: localhost
+```
+
+### Terminal 2 — Frontend
+
+```powershell
+cd "C:\Users\vishw\Downloads\Projects\job-application-tracker-portal-main\client"
+npm start
+```
+
+Then open:
+
+```text
+http://localhost:3000
+```
+
+---
+
+## MongoDB
+
+The application uses MongoDB through Mongoose.
+
+For local MongoDB:
+
+```env
+MONGO_URI=mongodb://localhost:27017/job_tracker
+```
+
+For MongoDB Atlas, replace the value with your Atlas connection string.
+
+Keep database credentials private and do not upload them to GitHub.
+
+---
+
+## Application Flow
+
+```text
+Register
+   |
+   v
+Login
+   |
+   v
+JWT Authentication
+   |
+   v
+Dashboard
+   |
+   v
+Add Job Application
+   |
+   v
+Track Application Stage
+   |
+   v
+Interview / Offer
+   |
+   v
+Accepted / Final Stage
+   |
+   v
+View Reports & Analytics
+```
+
+---
+
+## Application Stages
+
+Applications can be tracked through the following stages:
+
+```text
+Saved
+  |
+  v
+Applied
+  |
+  v
+OA
+  |
+  v
+Interview
+  |
+  v
+Offer
+  |
+  v
+Accepted
+```
+
+The Kanban board provides a visual representation of this pipeline.
+
+---
+
+## Security
+
+The backend uses:
+
+- JWT authentication
+- bcrypt password hashing
+- Protected API routes
+- Environment variables for configuration
+- CORS configuration
+- Server-side request validation
+
+Private configuration values should be stored in `server/.env` and excluded from Git.
+
+---
 
 ## Screenshots
 
-### Register Page
+Project screenshots can be stored under:
 
-![Register](docs/screenshots/register.png)
+```text
+docs/screenshots/
+```
 
-### Login Page
+Recommended screenshots include:
 
-![Login](docs/screenshots/login.png)
+- Registration page
+- Login page
+- Dashboard
+- Applications page
+- Kanban board
+- Add Application modal
+- Reports and Analytics
+- MongoDB collections
 
-### Dashboard
-
-![User](docs/screenshots/dashboard.png)
-
-### Kanban dashboard
-
-![Kanban](docs/screenshots/Kanban.png)
-
-### Add Application
-
-![Add application](docs/screenshots/Add-application.png)
-
-### Application
-
-![application]docs/screenshots/Application.png
-
-### Reports and Analytics
-
-![reports](docs/screenshots/reports.png)
-
-### MongoDB Collections
-
-![collection](docs/screenshots/mongodb-item.png)
-
-## 🎬 Demo Video
-
-[![Watch Demo](https://img.youtube.com/vi/WdKlcD4WcEc/0.jpg)](https://youtu.be/WdKlcD4WcEc)
-
-Click the image above to watch the full demo.
+---
 
 ## Learning Outcomes
 
-After building this project you will understand:
+This project demonstrates practical experience with:
 
-- Full-stack MERN architecture and separation of concerns
-- JWT authentication flow (register → token → protected routes)
-- RESTful API design with Express.js
-- Mongoose schema design with relationships
-- React Context API for global state
-- Axios interceptors for automatic token attachment
-- React Router v6 with protected/public routes
-- Building reusable components (modals, layouts)
+- Full-stack MERN application architecture
+- React component development
+- React Router
+- Context API
+- Axios API integration
+- JWT authentication
+- Password hashing with bcrypt
+- REST API development with Express
+- MongoDB and Mongoose
+- CRUD operations
+- Protected routes
+- Dashboard analytics
 - Data visualization with Recharts
-- MongoDB aggregation pipelines for analytics
+- Responsive frontend development
+- Git and GitHub version control
 
 ---
 
 ## Author
 
-Sonia Thakur
+**Vishwjit Pandurang Upase**
 
 GitHub:
-https://github.com/Sonia068
+
+https://github.com/vishuu-patil-001
 
 LinkedIn:
-https://www.linkedin.com/in/sonia-thakur-6ab93b349/
+
+https://www.linkedin.com/in/mr-vishwjit-p-upase
 
 ---
 
-⭐ If you found this project useful, please give it a star on GitHub.
+## Repository
+
+GitHub repository:
+
+https://github.com/vishuu-patil-001/AppliJobTrack
+
+
