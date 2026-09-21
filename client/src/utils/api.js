@@ -1,15 +1,18 @@
-
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: process.env.REACT_APP_API_URL || '/api',
   headers: { 'Content-Type': 'application/json' },
 });
 
 // Attach token to every request
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('jt_token');
-  if (token) config.headers.Authorization = `Bearer ${token}`;
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
   return config;
 });
 
@@ -22,6 +25,7 @@ api.interceptors.response.use(
       localStorage.removeItem('jt_user');
       window.location.href = '/login';
     }
+
     return Promise.reject(err);
   }
 );
