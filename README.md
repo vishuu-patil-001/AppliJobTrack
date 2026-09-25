@@ -816,7 +816,3 @@ https://applijobtrack.onrender.com
 https://applijobtrack-api.onrender.com
 
 ---
-
-## License
-
-This project is intended as a portfolio and learning project.
